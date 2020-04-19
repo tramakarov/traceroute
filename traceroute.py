@@ -34,15 +34,17 @@ def get_route(address):
 
     for line in iter(tracert.stdout.readline, ""):
         line = line.decode(encoding='cp866')
-        if line.find('Трассировка маршрута') != -1:
+        # print(' line: ', line)
+        if line.find('Не удается разрешить системное имя узла') != -1:
+            print(line)
+            break
+        elif line.find('Трассировка маршрута') != -1:
             print(line, end='')
+            end = ip_regex.findall(line)[0]
         elif line.find('с максимальным числом прыжков') != -1:
             print(line)
             print(table.format(number='№', ip='IP            ', asn='AS'))
             get_as = True
-        elif line.find('\nТрассировка завершена') != -1:
-            print(line)
-            break
 
         try:
             ip = ip_regex.findall(line)[0]
@@ -54,9 +56,12 @@ def get_route(address):
             if asn_number is None:
                 asn_number = '--'
 
-            ip = ip + (' '*(15 - len(ip))) if len(ip) < 15 else ip
-            print(table.format(number=number, ip=ip, asn=asn_number))
+            str_ip = ip + (' '*(15 - len(ip))) if len(ip) < 15 else ip
+            print(table.format(number=number, ip=str_ip, asn=asn_number))
             number += 1
+            if ip == end:
+                print('Трассировка завершена.')
+                break
 
 
 def print_help():
