@@ -127,8 +127,6 @@ pip-selfcheck.json
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
 
-.idea/
-
 ## File-based project format:
 *.iws
 
@@ -148,15 +146,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
-.idea/traceroute.iml
-.idea/traceroute.iml
 sandbox.py
-.idea/vcs.xml
-.idea/workspace.xml
-.idea/vcs.xml
-.idea/workspace.xml
-.idea/workspace.xml
-.idea/vcs.xml
-.idea/workspace.xml
 in.txt
-.idea/workspace.xml
+.idea/
